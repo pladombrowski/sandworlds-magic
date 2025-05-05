@@ -8,20 +8,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const svgDoc = svgObject.contentDocument;
 
         // Define the primary and secondary circle IDs
-        const primaryIds = ['water', 'air', 'light', 'dark', 'fire', 'earth'];
+        const primaryIds = ['water', 'air', 'light', 'shadow', 'fire', 'earth'];
         const secondaryIds = [
             { id: 'frost', requires: ['water', 'air'] },
             { id: 'holy', requires: ['water', 'light'] },
-            { id: 'decay', requires: ['water', 'dark'] },
+            { id: 'decay', requires: ['water', 'shadow'] },
             { id: 'nature', requires: ['water', 'earth'] },
-            { id: 'ilusion', requires: ['air', 'light'] },
+            { id: 'illusion', requires: ['air', 'light'] },
             { id: 'lightning', requires: ['air', 'fire'] },
-            { id: 'psychic', requires: ['air', 'dark'] },
-            { id: 'undeath', requires: ['dark', 'earth'] },
-            { id: 'demonic', requires: ['dark', 'fire'] },
+            { id: 'psychic', requires: ['air', 'shadow'] },
+            { id: 'undeath', requires: ['shadow', 'earth'] },
+            { id: 'demonic', requires: ['shadow', 'fire'] },
             { id: 'arcane', requires: ['fire', 'light'] },
             { id: 'volcanic', requires: ['fire', 'earth'] },
-            { id: 'enchancement', requires: ['earth', 'light'] }
+            { id: 'enhancement', requires: ['earth', 'light'] }
         ];
 
         // Find the primary and secondary circle elements in the SVG
