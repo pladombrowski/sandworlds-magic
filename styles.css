@@ -1,0 +1,189 @@
+/* Medieval Fantasy Theme */
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+:root {
+    --water-color: #1e90ff;
+    --air-color: #87ceeb;
+    --light-color: #ffff99;
+    --dark-color: #4b0082;
+    --fire-color: #ff4500;
+    --earth-color: #8b4513;
+
+    --frost-color: #a5f2f3;
+    --holy-color: #fffacd;
+    --decay-color: #7d6b91;
+    --nature-color: #228b22;
+    --illusion-color: #e6e6fa;
+    --lightning-color: #ffd700;
+    --psychic-color: #9370db;
+    --undeath-color: #556b2f;
+    --demonic-color: #8b0000;
+    --arcane-color: #ff69b4;
+    --volcanic-color: #b22222;
+    --enhancement-color: #daa520;
+}
+
+body {
+    font-family: 'MedievalSharp', cursive;
+    background-image: url('https://img.freepik.com/free-photo/old-parchment-paper-texture-background_1232-674.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,100 M100,0 L0,100" stroke="rgba(139, 69, 19, 0.05)" stroke-width="1"/></svg>');
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
+    color: #5e3a08;
+    position: relative;
+    display: inline-block;
+}
+
+h1::before, h1::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 3px;
+    background-color: #8b4513;
+}
+
+h1::before {
+    right: 100%;
+    margin-right: 20px;
+}
+
+h1::after {
+    left: 100%;
+    margin-left: 20px;
+}
+
+.container::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 30px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path d="M15,0 L30,15 L15,30 L0,15 Z" fill="rgba(139, 69, 19, 0.1)" stroke="rgba(139, 69, 19, 0.3)" stroke-width="1"/></svg>');
+    background-repeat: repeat-x;
+    margin-top: 30px;
+}
+
+.magic-diagram {
+    position: relative;
+    width: 100%;
+    height: 900px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    background-image: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(139, 69, 19, 0.1)" stroke-width="2"/></svg>');
+    background-position: center;
+    background-repeat: repeat;
+    background-size: auto;
+    border: 8px double #8b4513;
+    overflow: hidden;
+}
+
+.magic-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* SVG Interaction Styles */
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(70%);
+}
+
+/* Animation for newly enabled circles */
+@keyframes glow {
+    0% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); }
+    50% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 25px rgba(255, 215, 0, 0.5)); transform: scale(1.2); }
+    100% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); }
+}
+
+/* Animation for clicked circles */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Add a decorative border to the diagram */
+.magic-diagram::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid rgba(139, 69, 19, 0.3);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+/* Add decorative corners */
+.magic-diagram::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path d="M0,0 L30,0 L30,5 L5,5 L5,30 L0,30 Z" fill="%238b4513"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path d="M0,0 L30,0 L30,30 L25,30 L25,5 L0,5 Z" fill="%238b4513" transform="rotate(90, 15, 15)"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path d="M0,0 L30,0 L30,30 L25,30 L25,5 L0,5 Z" fill="%238b4513" transform="rotate(180, 15, 15)"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path d="M0,0 L30,0 L30,30 L25,30 L25,5 L0,5 Z" fill="%238b4513" transform="rotate(270, 15, 15)"/></svg>');
+    background-position: top left, top right, bottom right, bottom left;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Scroll styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1e9d2;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8b4513;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #654321;
+}
