@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Create a text element for points display
                 const pointsText = document.createElementNS("http://www.w3.org/2000/svg", "text");
                 pointsText.setAttribute('x', cx);
-                pointsText.setAttribute('y', cy + r/2);
+                pointsText.setAttribute('y', (cy + r/2)+6);
                 pointsText.setAttribute('text-anchor', 'middle');
                 pointsText.setAttribute('font-size', '20');
                 pointsText.setAttribute('fill', '#ffffff');
