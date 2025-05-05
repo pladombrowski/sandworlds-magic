@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+<main>
+    <div id="parchment"></div>
+    <div id="contain" class="container">
         <h1>Magic System</h1>
 
         <div class="magic-diagram">
@@ -16,5 +18,14 @@
     </div>
 
     <script src="script.js"></script>
+</main>
+
+<svg>
+    <filter id="wavy2">
+        <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="1" />
+        <feDisplacementMap in="SourceGraphic" scale="20" />
+    </filter>
+</svg>
+
 </body>
 </html>
