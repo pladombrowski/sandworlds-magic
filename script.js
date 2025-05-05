@@ -67,10 +67,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Add the group to the secondaryCircles array
                 secondaryCircles.push(group);
 
-                // Add click event listener
+                // Add click event listener - secondary circles are now read-only
                 group.addEventListener('click', function() {
                     if (!this.classList.contains('disabled')) {
-                        incrementPoints(this);
+                        // Visual feedback only, no point increment
+                        const circle = this.querySelector('circle');
+                        if (circle) {
+                            circle.classList.add('clicked');
+                            setTimeout(() => {
+                                circle.classList.remove('clicked');
+                            }, 300);
+                        }
                     }
                 });
 
@@ -156,19 +163,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Function to check if secondary circles should be enabled
+        // Function to check if secondary circles should be enabled and calculate their points
         function checkSecondaryCircles() {
             secondaryCircles.forEach(secondaryGroup => {
                 const requiredTypes = secondaryGroup.getAttribute('data-requires').split(',');
                 let allRequirementsMet = true;
+                let minPrimaryPoints = Infinity;
 
                 // Check if all required primary circles have at least 1 point
+                // and find the minimum points value
                 requiredTypes.forEach(type => {
                     const primaryGroup = primaryCircles.find(g => g.getAttribute('data-type') === type);
                     if (primaryGroup) {
                         const points = parseInt(primaryGroup.getAttribute('data-points')) || 0;
                         if (points < 1) {
                             allRequirementsMet = false;
+                        }
+                        // Track the minimum points value
+                        if (points < minPrimaryPoints) {
+                            minPrimaryPoints = points;
                         }
                     } else {
                         allRequirementsMet = false;
@@ -182,6 +195,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         secondaryGroup.classList.remove('disabled');
                         circle.setAttribute('stroke-dasharray', 'none');
 
+                        // Calculate secondary magic points (2 * minimum primary points)
+                        const calculatedPoints = 2 * minPrimaryPoints;
+
+                        // Update the secondary circle's points
+                        secondaryGroup.setAttribute('data-points', calculatedPoints);
+
+                        // Update the points display
+                        const pointsDisplay = secondaryGroup.querySelector('.points');
+                        if (pointsDisplay) {
+                            pointsDisplay.textContent = calculatedPoints;
+                        }
+
                         // Add glow effect if newly enabled
                         if (secondaryGroup.classList.contains('disabled')) {
                             circle.classList.add('newly-enabled');
@@ -192,6 +217,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         secondaryGroup.classList.add('disabled');
                         circle.setAttribute('stroke-dasharray', '12, 3');
+
+                        // Reset points to 0 when disabled
+                        secondaryGroup.setAttribute('data-points', '0');
+
+                        // Update the points display
+                        const pointsDisplay = secondaryGroup.querySelector('.points');
+                        if (pointsDisplay) {
+                            pointsDisplay.textContent = '0';
+                        }
                     }
                 }
             });
